@@ -33,7 +33,7 @@ achieved.  However, to save time, we suggest you do not write full integration t
 
 Overwrite this `README`, outlining the reasoning behind your design decisions and any ways in which you think your code could be improved.  If you need to refer back to these instructions, [they are duplicated here](./INSTRUCTIONS.md).
 
-Please either fork this repo and send us a pull request, or return a `tar.gz` of your local repository.
+Please return an archive (`.zip` or `tar.gz`) of your local repository.
 
 ### Alternatives to Ruby
 If you feel your skills are better demonstrated in a different language, please feel free to submit your solution in the language of your choice.  Be sure to include full instructions on how to build and run your code.
