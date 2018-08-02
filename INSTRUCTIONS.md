@@ -6,18 +6,18 @@ It accepts the following 7 commands:
 | Command | Description |
 | --- | --- |
 | `help` | Shows the help message. |
-| `init W H` | (Re)Initialises the application with a W x H grid of shelves, with all spaces empty. |
-| `store X Y W H P` | Stores a crate of product code P and of size W x H at position (X,Y). The crate will fill W x H slots.|
-| `locate P` | Show a list of positions where product code P can be found. |
-| `remove X Y` | Remove the crate at positon (X,Y). |
-| `view` | Output a representation of the current state of the shelves.<br>Position (1,1) should be at the bottom left position on the grid and (1, H) should be the top left. |
+| `init W H` | (Re)Initialises the application as an empty W x H warehouse. |
+| `store X Y W H P` | Stores a crate of product code P and of size W x H at position (X,Y).<br>The crate will occupy W x H locations on the grid.|
+| `locate P` | Show a list of all locations occupied by product code P. |
+| `remove X Y` | Remove the entire crate occupying the location (X,Y). |
+| `view` | Output a visual representation of the current state of the grid.<br>Position (1,1) should be at the bottom left position on the grid and (1, H) should be the top left. |
 | `exit` | Exits the application. |
 
 - Arguments W, H, X and Y will always be integers, and P will always be a single character.
 - You should not worry about validating the format of the input.
-- A crate of dimensions 2 x 3 will occupy 6 positions in the grid.
+- A crate of dimensions 2 x 3 will occupy 6 locations in the grid.
 
-The user should be shown an error message when:
+The user should be shown a graceful error message when:
 - Trying to store a crate at a position which doesn't exist.
 - Trying to store a crate which doesn't fit.
 - Trying to remove a crate which doesn't exist.
