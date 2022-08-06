@@ -13,4 +13,10 @@ module Errors
     end
   end
 
+  class BoxDoesNotFitError < WarehouseError
+    def message
+      'Box has to fit inside the warehouse'
+    end
+  end
+
 end
