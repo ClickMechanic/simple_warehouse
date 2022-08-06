@@ -35,7 +35,7 @@ class Warehouse
   end
 
   def view(visualizer)
-    visualizer.draw_boxes(boxes)
+    visualizer.new(width, height).draw_boxes(boxes)
   end
 
   private

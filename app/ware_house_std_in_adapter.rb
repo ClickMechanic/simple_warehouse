@@ -1,6 +1,7 @@
 require './app/warehouse'
 require './app/crate'
 require './app/errors'
+require './app/visualizer/window_view'
 
 class WareHouseStdInAdapter
   attr_reader :warehouse
@@ -38,8 +39,7 @@ class WareHouseStdInAdapter
 
   def view
     raise Errors::WareHouseNotInitializedError unless initialized?
-    # TODO add visualizer
-    visualizer = 'visualizer'
+    visualizer = Visualizer::WindowView
     warehouse.view(visualizer)
   end
 
