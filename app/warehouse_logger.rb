@@ -63,7 +63,7 @@ class WarehouseLogger
     return warn 'No boxes found' if boxes.empty?
 
     boxes.each do |box|
-      info "Box named #{box.name} found at #{box.x_pos}, #{box.y_pos}"
+      info "Box named #{box.product_code} found at #{box.x_pos}, #{box.y_pos}"
     end
   end
 
