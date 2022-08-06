@@ -30,6 +30,10 @@ class Warehouse
     @boxes.delete_at(box_index)
   end
 
+  def locate(product_code)
+    @boxes.filter { |box| box.product_code == product_code }
+  end
+
   private
 
   # @param [Box] box

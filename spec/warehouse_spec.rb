@@ -97,4 +97,27 @@ describe Warehouse do
       end
     end
   end
+
+  describe '#locate' do
+    let(:crate1) { instance_double(Crate, product_code: 'p_code') }
+    let(:crate2) { instance_double(Crate, product_code: 'p_code') }
+
+    context 'when product with the code is stored' do
+      before do
+        subject.boxes.push(crate1, crate2)
+      end
+
+      it 'returns a non empty array' do
+        expect(subject.locate('p_code')).to match_array([crate1, crate2])
+      end
+    end
+
+    context 'when product with the code is not stored' do
+      it 'returns a empty array' do
+        expect(subject.locate('p_code')).to match_array([])
+      end
+    end
+
+  end
+
 end
