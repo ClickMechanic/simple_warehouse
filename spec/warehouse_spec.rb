@@ -9,15 +9,6 @@ describe Warehouse do
     describe 'sets values for attr readers' do
       it { expect(subject.width).to eq(10) }
       it { expect(subject.height).to eq(10) }
-
-      context 'when dimensions are passed as string' do
-        subject { described_class.new('5', '5') }
-
-        it 'is converted to integer' do
-          expect(subject.width).to eq(5)
-          expect(subject.height).to eq(5)
-        end
-      end
     end
 
     context 'when the warehouse dimensions as zero' do
