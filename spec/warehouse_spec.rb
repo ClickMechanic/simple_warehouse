@@ -112,11 +112,12 @@ describe Warehouse do
   end
 
   describe '#view' do
-    let(:visualizer) { double('visualizer', draw_boxes: nil) }
+    let(:visualizer) { instance_double(Visualizer::WindowView, draw_boxes: nil) }
 
     it 'calls draw_boxes method on visualizer' do
+      allow(Visualizer::WindowView).to receive(:new).and_return(visualizer)
       expect(visualizer).to receive(:draw_boxes).with(subject.boxes)
-      subject.view(visualizer)
+      subject.view(Visualizer::WindowView)
     end
   end
 
