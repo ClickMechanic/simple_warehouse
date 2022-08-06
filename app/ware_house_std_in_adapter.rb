@@ -30,4 +30,18 @@ class WareHouseStdInAdapter
     warehouse.remove(x_pos.to_i, y_pos.to_i)
   end
 
+  def locate(product_code)
+    raise Errors::WareHouseNotInitializedError unless initialized?
+
+    warehouse.locate(product_code)
+  end
+
+  def view
+    raise Errors::WareHouseNotInitializedError unless initialized?
+    # TODO add visualizer
+    visualizer = 'visualizer'
+    warehouse.view(visualizer)
+  end
+
+
 end

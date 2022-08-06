@@ -77,4 +77,28 @@ describe WareHouseStdInAdapter do
       end
     end
   end
+
+  describe '#locate' do
+    before do
+      subject.init('10', '20')
+      allow(warehouse).to receive(:locate)
+    end
+
+    it 'locates box from warehouse' do
+      subject.locate('p_code')
+      expect(warehouse).to have_received(:locate).with('p_code')
+    end
+  end
+
+  describe '#view' do
+    before do
+      subject.init('10', '20')
+      allow(warehouse).to receive(:view)
+    end
+
+    it 'locates box from warehouse' do
+      subject.view
+      expect(warehouse).to have_received(:view)
+    end
+  end
 end
