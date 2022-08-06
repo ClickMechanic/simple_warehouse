@@ -17,11 +17,24 @@ class Crate
     raise Errors::InvalidBoxDimensions if @width.zero? || @height.zero?
   end
 
+  # @return [Integer]
   def x2
     x1 + width
   end
 
+  # @return [Integer]
   def y2
     y1 + height
+  end
+
+  # checks if the given point is inside the crate or not
+  # @param [Integer] x_coordinate
+  # @param [Integer] y_coordinate
+  # @return [TrueClass, FalseClass]
+  def touch?(x_coordinate, y_coordinate)
+    x_coordinate >= x1 &&
+      x_coordinate < x2 &&
+      y_coordinate >= y1 &&
+      y_coordinate < y2
   end
 end

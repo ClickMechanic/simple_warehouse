@@ -38,7 +38,7 @@ describe Crate do
   end
 
   describe 'alias methods' do
-    it 'same return value for both methods' do
+    it 'returns same value for both methods' do
       expect(subject.x_pos).to eq(subject.x1)
       expect(subject.y_pos).to eq(subject.y1)
     end
@@ -54,5 +54,30 @@ describe Crate do
     it 'is sum of y1 + height' do
       expect(subject.y2).to eq(3)
     end
+  end
+
+  describe '#touch?' do
+    subject { Crate.new(1, 1, 5, 5, 'p_code') }
+
+    context 'when given given coordinate is outside the box' do
+      it 'returns false' do
+        expect(subject.touch?(6, 6)).to eq(false)
+        expect(subject.touch?(0, 0)).to eq(false)
+      end
+    end
+
+    context 'when given given coordinate is inside the box' do
+      it 'returns true' do
+        expect(subject.touch?(2,3)).to eq(true)
+      end
+    end
+
+    context 'when given given coordinate is at edge of the box' do
+      it 'returns true' do
+        expect(subject.touch?(1, 1)).to eq(true)
+        expect(subject.touch?(5, 5)).to eq(true)
+      end
+    end
+
   end
 end
