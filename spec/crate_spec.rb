@@ -28,13 +28,22 @@ describe Crate do
       end
     end
 
-    context 'when the box dimensions as invalid' do
+    context 'when the box dimensions are zero' do
       it 'raises error' do
         expect do
           described_class.new(0, 0, 0, 0, 'p_code')
         end.to raise_error(Errors::InvalidBoxDimensions)
       end
     end
+
+    context 'when the box dimensions are negative' do
+      it 'raises error' do
+        expect do
+          described_class.new(0, 0, -2, -3, 'p_code')
+        end.to raise_error(Errors::InvalidBoxDimensions)
+      end
+    end
+
   end
 
   describe 'alias methods' do

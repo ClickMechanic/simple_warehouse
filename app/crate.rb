@@ -14,7 +14,7 @@ class Crate
     @height = height.to_i
     @product_code = product_code
 
-    raise Errors::InvalidBoxDimensions if @width.zero? || @height.zero?
+    raise Errors::InvalidBoxDimensions unless @width.positive? && @height.positive?
   end
 
   # @return [Integer]
