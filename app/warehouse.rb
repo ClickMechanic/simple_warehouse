@@ -34,6 +34,10 @@ class Warehouse
     @boxes.filter { |box| box.product_code == product_code }
   end
 
+  def view(visualizer)
+    visualizer.draw_boxes(boxes)
+  end
+
   private
 
   # @param [Box] box

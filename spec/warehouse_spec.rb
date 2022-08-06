@@ -120,4 +120,13 @@ describe Warehouse do
 
   end
 
+  describe '#view' do
+    let(:visualizer) { double('visualizer', draw_boxes: nil) }
+
+    it 'calls draw_boxes method on visualizer' do
+      expect(visualizer).to receive(:draw_boxes).with(subject.boxes)
+      subject.view(visualizer)
+    end
+  end
+
 end
