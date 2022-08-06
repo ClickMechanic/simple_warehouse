@@ -1,18 +1,26 @@
+require './app/ware_house_std_in_adapter'
+
 class SimpleWarehouse
 
   def run
     @live = true
+    @adapter = WareHouseStdInAdapter.new
+
     puts 'Type `help` for instructions on usage'
     while @live
       print '> '
-      command = gets.chomp
+      input = gets.chomp.split(/\s+/)
+      command, *arguments = input
+
       case command
-        when 'help'
-          show_help_message
-        when 'exit'
-          exit
-        else
-          show_unrecognized_message
+      when 'help'
+        show_help_message
+      when 'init', 'store', 'locate', 'remove', 'view'
+        @adapter.public_send(command, *arguments)
+      when 'exit'
+        exit
+      else
+        show_unrecognized_message
       end
     end
   end
