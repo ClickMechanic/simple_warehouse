@@ -1,8 +1,5 @@
 # frozen_string_literal: true
-
-require 'rspec'
-require './app/crate'
-require './app/errors'
+require 'spec_helper'
 
 describe Crate do
   subject { Crate.new(1, 1, 2, 2, 'p_code') }

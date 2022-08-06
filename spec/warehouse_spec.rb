@@ -1,6 +1,6 @@
-require 'rspec'
-require './app/errors'
-require './app/warehouse'
+# frozen_string_literal: true
+
+require 'spec_helper'
 
 describe Warehouse do
   subject { Warehouse.new(5, 5) }
