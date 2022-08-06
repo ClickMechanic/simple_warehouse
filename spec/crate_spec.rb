@@ -84,6 +84,26 @@ describe Crate do
         expect(subject.touch?(5, 5)).to eq(true)
       end
     end
+  end
+
+  describe '#collide?' do
+    subject { Crate.new(1, 1, 10, 10, 'p_code') }
+
+    context 'when crates does not collide with each other' do
+      let(:new_crate) {  Crate.new(11, 11, 5, 5, 'p_code') }
+
+      it 'returns false' do
+        expect(subject.collide?(new_crate)).to eq(false)
+      end
+    end
+
+    context 'when crates collide with each other' do
+      let(:new_crate) {  Crate.new(0, 0, 2, 2, 'p_code') }
+
+      it 'returns true' do
+        expect(subject.collide?(new_crate)).to eq(true)
+      end
+    end
 
   end
 end

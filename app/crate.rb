@@ -37,4 +37,11 @@ class Crate
       y_coordinate >= y1 &&
       y_coordinate < y2
   end
+
+  def collide?(box)
+    return false if x1 >= box.x2 || box.x1 >= x2
+    return false if y1 >= box.y2 || box.y1 >= y2
+
+    true
+  end
 end
