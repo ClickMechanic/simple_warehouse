@@ -1,6 +1,38 @@
-# Simple Warehouse
+
+# Simple Warehouse 
+![ruby-3.1.2](https://img.shields.io/badge/Ruby-v3.1.2-green.svg)
+
+
+### User Story
+
 This is a simple command-line warehouse management tool. The user can record the storage and removal of crates of variable sizes on a grid of dynamic 'shelves'.
 
+
+## Getting started
+### Clone
+To get started with the app, clone the repo
+```
+$ cd /path/to/repos
+$ git clone 
+$ cd simple_warehouse
+```
+
+### Running
+This application is made using Ruby So first you need to install ruby version **3.1.2** to get started.
+
+you can follow this tutorial for setting up ruby with rvm https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/nginx/oss/install_language_runtime.html
+
+next install all the required gems via bundler
+```
+$ bundle install --without production
+```
+If the test suite passes, you'll be ready to run the app.
+
+```
+$ ruby runner.rb
+```
+## NOTES
+### Functionalities
 It accepts the following 7 commands:
 
 | Command | Description |
@@ -13,27 +45,81 @@ It accepts the following 7 commands:
 | `view` | Output a visual representation of the current state of the grid.<br>Position (1,1) should be at the bottom left position on the grid and (1, H) should be the top left. |
 | `exit` | Exits the application. |
 
-- Arguments W, H, X and Y will always be integers, and P will always be a single character.
-- You should not worry about validating the format of the input.
-- A crate of dimensions 2 x 3 will occupy 6 locations in the grid.
+- Arguments W, H, X and Y will always be integers, and P will always be a single character. .
 
-The user should be shown a graceful error message when:
-- Trying to store a crate at a position which doesn't exist.
-- Trying to store a crate which doesn't fit.
-- Trying to remove a crate which doesn't exist.
+## Technical Design
 
-![](./example.svg)
+When designing classes my primary drive was to stick to SOILD principles as
+much as i can, by that in mind i have created below classes
 
-## Task
-Adapt the provided skeleton application with the functionality described above.  Feel free to improve the existing code as you see fit.
+### Classes
+#### Crate
 
-We recommend writing unit tests for your code in either RSpec or Minitest to ensure the correct functionality is
-achieved.  However, to save time, we suggest you do not write full integration tests that simulate `stdin` and capture `stdout`.
+This class basically deal with the functionalities of the create or
+what ever needs to be stored in the ware house. So in future if 
+we need to change the storage type to something else ( for example triangle shaped boxes ),
+we can build a triangle shaped class and by defining the same public 
+methods we can simply do that with minimal changes
+
+#### Warehouse
+This basically deal with the functionalities of basic storage and retrieval of the objects 
+if we define `touch?`, `collide?` ( other than attr_readers) we can implement any 
+type of crate or behaviour we want. How each box should be stored is for the warehouse to 
+decide. If there exists a warehouse which only allows red boxes we can simply add a validation
+and the stored object doesnt need to be aware of that
+
+#### WareHouseStdInAdapter
+
+This connects the warehouse and and `stdin` so in future we can interface it with any
+kind of I/O. if we need to use it with rails, we can write a simple adapter for that and the classes doesnt have to change
+ 
+#### WarehouseLogger
+This is just for abstracting away the presentation logic, if we want to do the present it some other way we can define a
+class for that 
+
+#### Visualizer::WindowView
+This is basically a visualizer
+> i couldn't get it to work a 100%, there are few issues with OPENGL
+
+depending on out use case we can add different visualizers, if you want to show it
+in the terminal instead of a window as always define another class to do that
+
+### How can we improve
+
+currently i am storing the boxes in an array, and that behaviour is hardcoded
+in the warehouse class, this is not ideal. I would prefer moving the logic into 
+storage classes, so if we want to store the data in Database, Redis, or disk
+we can do that without any changes to the warehouse class
+<br>
+
+The visualizer is not perfectly working, i am having some issues with getting 
+it to close after it has launched
+
+> If you are having the same issue, just `ALT + TAB` to your terminal
+> the program will continue to work and listen to yor input regardless
 
 
-Overwrite this `README`, outlining the reasoning behind your design decisions and any ways in which you think your code could be improved.  If you need to refer back to these instructions, [they are duplicated here](./INSTRUCTIONS.md).
+## Common Issues
 
-Please return an archive (`.zip` or `tar.gz`) of your local repository.
+1. If you are having issue getting the `ruby2d` installed and if you are in ubuntu please install these libraries
+#### Ubuntu
+```shell
+sudo apt-get install libsdl2-dev \
+    libsdl2-gfx-dev \
+    libsdl2-image-dev \
+    libsdl2-mixer-dev \
+    libsdl2-net-dev \
+    libsdl2-ttf-dev \
+    libreadline6-dev \
+    libncurses5-dev
+```
 
-### Alternatives to Ruby
-If you feel your skills are better demonstrated in a different language, please feel free to submit your solution in the language of your choice.  Be sure to include full instructions on how to build and run your code.
+
+## TESTS
+This project uses `rspec` as the testing library
+
+to run the test run using this command
+
+```
+$ bundle exec rspec
+```
