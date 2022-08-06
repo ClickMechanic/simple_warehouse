@@ -18,6 +18,7 @@ class Warehouse
   # @raise Errors::BoxDoesNotFitError
   def store(box)
     raise Errors::BoxDoesNotFitError unless within_bounds?(box)
+    raise Errors::BoxCollidesWithAnotherBoxError unless space_available?(box)
 
     boxes << box
   end
@@ -30,6 +31,10 @@ class Warehouse
       [box.x1, box.x2].max <= width + 1 &&
       [box.y1, box.y2].min >= 1 &&
       [box.y1, box.y2].max <= height + 1
+  end
+
+  def space_available?(box)
+    boxes.filter { |stored_box| stored_box.collide?(box) }.empty?
   end
 
 end

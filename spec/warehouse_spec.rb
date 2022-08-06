@@ -3,19 +3,19 @@
 require 'spec_helper'
 
 describe Warehouse do
-  subject { Warehouse.new(10, 10) }
+  subject { described_class.new(10, 10) }
 
   describe '#initialize' do
-    context 'sets values for attr readers' do
+    describe 'sets values for attr readers' do
       it { expect(subject.width).to eq(10) }
       it { expect(subject.height).to eq(10) }
 
       context 'when dimensions are passed as string' do
-        subject { Warehouse.new('5', '5') }
+        subject { described_class.new('5', '5') }
 
         it 'is converted to integer' do
-          expect(subject.width).to eq(10)
-          expect(subject.height).to eq(10)
+          expect(subject.width).to eq(5)
+          expect(subject.height).to eq(5)
         end
       end
     end
@@ -38,27 +38,41 @@ describe Warehouse do
   end
 
   describe '#store' do
-    let(:box) { box = Crate.new(1, 1, 10, 10, 'p_code') }
+    let(:crate) { Crate.new(1, 1, 10, 10, 'p_code') }
 
     it 'appends the box to boxes array' do
-      expect { subject.store(box) }.to change { subject.boxes.length }.by(1)
+      expect { subject.store(crate) }.to change { subject.boxes.length }.by(1)
     end
-    context 'when box does not fit inside warehouse' do
 
+    context 'when box does not fit inside warehouse' do
       context 'when box is too big' do
-        let(:box) { box = Crate.new(1, 1, 100, 100, 'p_code') }
+        let(:crate) { Crate.new(1, 1, 100, 100, 'p_code') }
+
         it 'raises error' do
-          expect { subject.store(box) }.to raise_error(Errors::BoxDoesNotFitError)
+          expect { subject.store(crate) }.to raise_error(Errors::BoxDoesNotFitError)
         end
       end
 
       context 'when box overhangs outside warehouse' do
-        let(:box) { box = Crate.new(5, 5, 7, 7, 'p_code') }
+        let(:crate) { Crate.new(5, 5, 7, 7, 'p_code') }
+
         it 'raises error' do
-          expect { subject.store(box) }.to raise_error(Errors::BoxDoesNotFitError)
+          expect { subject.store(crate) }.to raise_error(Errors::BoxDoesNotFitError)
         end
       end
+    end
 
+    context 'when box collides with another box' do
+      let(:crate) { instance_double(Crate, collide?: true) }
+      let(:new_create) { Crate.new(1, 1, 2, 2, 'p_code') }
+
+      before do
+        subject.boxes << crate
+      end
+
+      it 'raises error' do
+        expect { subject.store(new_create) }.to raise_error(Errors::BoxCollidesWithAnotherBoxError)
+      end
     end
   end
 end

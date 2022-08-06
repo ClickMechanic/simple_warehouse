@@ -19,4 +19,10 @@ module Errors
     end
   end
 
+  class BoxCollidesWithAnotherBoxError < WarehouseError
+    def message
+      'Boxes cannot be stacked on top of each other'
+    end
+  end
+
 end
