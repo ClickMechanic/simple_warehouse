@@ -3,7 +3,7 @@ ruby '3.1.2'
 
 gem 'rspec'
 gem 'rainbow'
-gem 'terminal-table'
+gem 'ruby2d'
 
 group :development, :test do
   gem 'rubocop'
