@@ -75,4 +75,26 @@ describe Warehouse do
       end
     end
   end
+
+  describe '#remove' do
+    before do
+      subject.boxes << crate
+    end
+
+    context 'when removing a box that exists' do
+      let(:crate) { instance_double(Crate, touch?: true) }
+
+      it 'removes the box' do
+        expect { subject.remove(0, 0) }.to change { subject.boxes.length }.by(-1)
+      end
+    end
+
+    context 'when removing a box that does not exists' do
+      let(:crate) { instance_double(Crate, touch?: false) }
+
+      it 'raises error' do
+        expect { subject.remove(0, 0) }.to raise_error(Errors::BoxDoesNotExistError)
+      end
+    end
+  end
 end

@@ -25,4 +25,10 @@ module Errors
     end
   end
 
+  class BoxDoesNotExistError < WarehouseError
+    def message
+      'There exists no box at that coordinates'
+    end
+  end
+
 end

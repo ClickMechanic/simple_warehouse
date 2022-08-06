@@ -23,6 +23,13 @@ class Warehouse
     boxes << box
   end
 
+  def remove(x_pos, y_pos)
+    box_index = @boxes.index { |box| box.touch?(x_pos.to_i, y_pos.to_i) }
+
+    raise Errors::BoxDoesNotExistError if box_index.nil?
+    @boxes.delete_at(box_index)
+  end
+
   private
 
   # @param [Box] box
