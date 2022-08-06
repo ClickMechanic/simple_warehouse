@@ -31,4 +31,10 @@ module Errors
     end
   end
 
+  class WareHouseNotInitializedError < WarehouseError
+    def message
+      'Warehouse is not initialized please initialize it before continuing'
+    end
+  end
+
 end

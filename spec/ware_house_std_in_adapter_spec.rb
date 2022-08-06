@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe WareHouseStdInAdapter do
+  subject { described_class.new }
 
   let(:warehouse) { instance_double(Warehouse) }
   let(:crate) { instance_double(Crate) }
 
   before do
     allow(Warehouse).to receive(:new).and_return(warehouse)
-    allow(Crate).to receive(:new).and_return(warehouse)
+    allow(Crate).to receive(:new).and_return(crate)
   end
-
-  subject { described_class.new }
-
 
   describe '#init' do
     it 'creates new instance of warehouse' do
@@ -25,7 +25,7 @@ describe WareHouseStdInAdapter do
     end
   end
 
-  describe 'initialized?' do
+  describe '#initialized?' do
     context 'when initialized' do
       it 'return true' do
         subject.init('10', '20')
@@ -40,4 +40,41 @@ describe WareHouseStdInAdapter do
     end
   end
 
+  describe '#store' do
+    before do
+      subject.init('10', '20')
+      allow(warehouse).to receive(:store)
+    end
+
+    it 'stores box in warehouse' do
+      subject.store(0, 0, 0, 0, 'p')
+      expect(warehouse).to have_received(:store).with(crate)
+    end
+
+    context 'values are passed as strings' do
+      it 'converts everything to integer' do
+        subject.store('0', '0', '0', '0', 'p')
+        expect(Crate).to have_received(:new).with(0, 0, 0, 0, 'p')
+      end
+    end
+  end
+
+  describe '#remove' do
+    before do
+      subject.init('10', '20')
+      allow(warehouse).to receive(:remove)
+    end
+
+    it 'removes box from warehouse' do
+      subject.remove(0, 0)
+      expect(warehouse).to have_received(:remove).with(0, 0)
+    end
+
+    context 'values are passed as strings' do
+      it 'converts everything to integer' do
+        subject.remove('0', '0', )
+        expect(warehouse).to have_received(:remove).with(0, 0)
+      end
+    end
+  end
 end
