@@ -1,3 +1,5 @@
+require_relative 'option_reader'
+
 class OptionRunner
   attr_reader :options
 
@@ -10,8 +12,8 @@ class OptionRunner
   end
 
   def action(opt)
-    runner = OptionRunner.new
-    obj = @options[runner.run] || Unknown.new()
-    obj.action[runner.run]
+    reader = OptionReader.new(opt)
+    obj = @options[reader.read] || Unknown.new()
+    obj.action[reader.read]
   end
 end

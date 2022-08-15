@@ -5,13 +5,27 @@ class OptionReader
     @opt = opt
   end
 
-  if @opt == 'help'
-    'help'
-  elsif @opt == 'exit'
-    'exit'
-  elsif @opt.include? 'init'
-    puts @opt
-  else
-    'unknown'
+  def read
+    case @opt
+      when 'help'
+        'help'
+      when /init/
+        puts @opt
+      when 'exit'
+        'exit'
+      else
+        'unknown'
+    end
   end
+
+
+  # if @opt == 'help'
+  #   'help'
+  # elsif @opt == 'exit'
+  #   'exit'
+  # elsif @ 'init'
+  #   puts @opt
+  # else
+  #   'unknown'
+  # end
 end
