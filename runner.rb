@@ -1,6 +1,7 @@
 require './app/simple_warehouse'
 require './app/option_runner'
 
+require './app/models/warehouse.rb'
 
 require './app/options/help'
 require './app/options/exit'

@@ -6,7 +6,8 @@ class InitWarehouse < Options
     super '(Re)Initialises the application as an empty W x H warehouse.'
   end
 
-  def actions(option_args)
-    p option_args
+  def action(option_args)
+    Warehouse.new(option_args)
+    puts "You have created a warehouse of size: #{option_args[0]} x #{option_args[1]}"
   end
 end
