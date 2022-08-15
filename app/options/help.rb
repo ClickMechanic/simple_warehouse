@@ -6,7 +6,7 @@ class Help < Options
     super 'Shows the help message.'
   end
 
-  def action
+  def action(option_args)
     puts <<~HELP
       help             Shows this help message
       init W H         (Re)Initialises the application as an empty W x H warehouse.

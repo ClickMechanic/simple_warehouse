@@ -6,7 +6,7 @@ class Exit < Options
     super 'Exits the application.'
   end
 
-  def action
+  def action(option_args)
     exit
   end
 end
