@@ -1,4 +1,6 @@
-require '../app/simple_warehouse'
+require_relative '../app/simple_warehouse.rb'
 
-require '../app/option_runner'
-require '../app/options/help'
+require_relative '../app/option_runner'
+require_relative '../app/options/help'
+
+require_relative '../app/option_reader'
