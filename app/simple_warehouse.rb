@@ -13,9 +13,6 @@ class SimpleWarehouse
       print '> '
       option = gets.chomp
       @runner.action(option)
-
-      #   when 'exit.rb'
-      #     exit.rb
       #   else
       #     show_unrecognized_message
       # end
@@ -36,9 +33,9 @@ class SimpleWarehouse
   #   HELP
   # end
 
-  def show_unrecognized_message
-    puts 'Command not found. Type `help` for instructions on usage'
-  end
+  # def show_unrecognized_message
+  #   puts 'Command not found. Type `help` for instructions on usage'
+  # end
 
   # def exit.rb
   #   puts 'Thank you for using simple_warehouse!'

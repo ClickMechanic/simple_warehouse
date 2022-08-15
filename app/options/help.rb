@@ -14,7 +14,7 @@ class Help < Options
       locate P         Show a list of all locations occupied by product code P.
       remove X Y       Remove the entire crate occupying the location (X,Y).
       view             Output a visual representation of the current state of the grid.
-      exit.rb             Exits the application.
+      exit            Exits the application.
     HELP
   end
 

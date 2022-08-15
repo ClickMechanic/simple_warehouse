@@ -10,6 +10,7 @@ class OptionRunner
   end
 
   def action(opt)
-    @options[opt].action
+    obj = @options[opt] || Unknown.new()
+    obj.action
   end
 end
