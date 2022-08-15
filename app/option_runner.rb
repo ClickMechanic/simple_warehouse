@@ -14,6 +14,6 @@ class OptionRunner
   def action(opt)
     reader = OptionReader.new(opt)
     obj = @options[reader.read] || Unknown.new()
-    obj.action[reader.read]
+    obj.action[reader.opt]
   end
 end

@@ -2,6 +2,7 @@ class OptionReader
   attr_reader :option_args
 
   def initialize(opt)
+    option_args = []
     @opt = opt
   end
 
