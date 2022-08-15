@@ -3,9 +3,10 @@ class SimpleWarehouse
   def initialize
     @live = true
     @runner = OptionRunner.new
-    @runner.add_option'help', Help.new()
-    @runner.add_option'exit', Exit.new()
-    # @runner.add_option 'init', InitWarehouse()
+    @runner.add_option'help', Help.new
+    @runner.add_option 'init', InitWarehouse.new
+    @runner.add_option'exit', Exit.new
+
   end
 
   def run

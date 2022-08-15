@@ -5,7 +5,7 @@ class Options
     @message = message
   end
 
-  def action
+  def action(option_args)
     StandardError.new 'Not Yet Implemented'
   end
 

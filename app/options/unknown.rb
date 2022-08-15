@@ -6,7 +6,7 @@ class Unknown < Options
     super 'Unknown Option'
   end
 
-  def action
+  def action(option_args)
     puts 'Option entered is not recognized, please try again or type help for a list of options'
   end
 end
