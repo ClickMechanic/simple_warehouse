@@ -1,3 +1,7 @@
-require './app/simple_warehouse'
+#!/usr/bin/env ruby
 
-SimpleWarehouse.new.run
+$LOAD_PATH << File.expand_path('app', __dir__)
+
+require 'command_line_interface'
+
+CommandLineInterface.new.run
