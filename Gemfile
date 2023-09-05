@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
-ruby '3.1.2'
+ruby '3.2.1'
 
-gem 'rspec', '~> 3.0'
+gem 'rspec', '~> 3.12'
