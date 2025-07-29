@@ -3,15 +3,15 @@ This is an exercise to create a simple command-line warehouse management tool. T
 
 It should accept the following 7 commands:
 
-| Command | Description |
-| --- | --- |
-| `help` | Shows the help message. |
-| `init W H` | (Re)Initialises the application as an empty W x H warehouse. |
-| `store X Y W H P` | Stores a crate of product code P and of size W x H at position (X,Y).<br>The crate will occupy W x H locations on the grid.|
-| `locate P` | Show a list of all locations occupied by product code P. |
-| `remove X Y` | Remove the entire crate occupying the location (X,Y). |
-| `view` | Output a visual representation of the current state of the grid.<br>Position (1,1) should be at the bottom left position on the grid and (1, H) should be the top left. |
-| `exit` | Exits the application. |
+| Command           | Description                                                                                                                                                             |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `help`            | Shows the help message.                                                                                                                                                 |
+| `init W H`        | (Re)Initialises the application as an empty W x H warehouse.                                                                                                            |
+| `store X Y W H P` | Stores a crate of product code P and of size W x H at position (X,Y).<br>The crate will occupy W x H locations on the grid.                                             |
+| `locate P`        | Show a list of all locations occupied by product code P.                                                                                                                |
+| `remove X Y`      | Remove the entire crate occupying the location (X,Y).                                                                                                                   |
+| `view`            | Output a visual representation of the current state of the grid.<br>Position (1,1) should be at the bottom left position on the grid and (1, H) should be the top left. |
+| `exit`            | Exits the application.                                                                                                                                                  |
 
 - Arguments W, H, X and Y will always be integers, and P will always be a single character.
 - You do not need to worry about validating the format of the input.
@@ -24,10 +24,6 @@ Your customer has provided some user stories (below) which describe their requir
 Adapt the provided skeleton application to meet the user requirements.  Feel free to improve the existing code as you see fit.
 
 We recommend writing unit tests for your code to ensure the correct functionality. We've included a few RSpec tests to get you started, but you can introduce an alternative testing framework if you want.
-
-Please outline the reasoning behind your design decisions and any ways in which you think your code could be improved in [NOTES.md](./NOTES.md).
-
-Please return an archive (`.zip` or `tar.gz`) of your local repository.
 
 
 ## User Stories
@@ -107,9 +103,5 @@ The exact format of the view command is up to you, here are a couple of possible
      1  AAAAAAAA     |
       123456789111111
                012345
-
-
-### Alternatives to Ruby
-If you feel your skills are better demonstrated in a different language, please feel free to submit your solution in the language of your choice.  Be sure to include full instructions on how to build and run your code.
 
 
